@@ -25,7 +25,7 @@ exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             serve_static_1.ServeStaticModule.forRoot({
-                rootPath: (0, path_1.join)(__dirname, '../..', 'client', 'dist'),
+                rootPath: (0, path_1.join)(__dirname, "../..", "client", "dist")
             }),
             board_module_1.BoardModule,
             tasks_module_1.TasksModule,
@@ -34,11 +34,7 @@ exports.AppModule = AppModule = __decorate([
                 imports: [config_1.ConfigModule],
                 useFactory: (configService) => ({
                     type: 'postgres',
-                    host: configService.get('DB_HOST'),
-                    port: configService.get('DB_PORT'),
-                    username: configService.get('DB_USERNAME'),
-                    password: configService.get('DB_PASSWORD'),
-                    database: configService.get('DB_NAME'),
+                    url: configService.get('POSTGRES_URL'),
                     synchronize: true,
                     autoLoadEntities: true
                 }),
@@ -48,7 +44,7 @@ exports.AppModule = AppModule = __decorate([
             sub_list_module_1.SubListModule
         ],
         controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        providers: [app_service_1.AppService]
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map
