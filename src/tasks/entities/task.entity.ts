@@ -1,7 +1,6 @@
 import {Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {Board} from "../../board/entities/board.entity";
 import {History} from "../../history/entities/history.entity";
-import {SubList} from "../../sub_list/entities/sub_list.entity";
 
 @Entity()
 export class Task {
@@ -15,14 +14,6 @@ export class Task {
   )
   @JoinColumn({name: 'board_id'})
   board: Board
-
-  @ManyToOne(
-    ()=>SubList,
-    (subList) => subList.task,
-    {onDelete: "CASCADE"}
-  )
-  @JoinColumn({name: 'sub_list_id'})
-  sub_list: SubList
 
   @OneToMany(
     () => History,
